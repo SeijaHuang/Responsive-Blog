@@ -1,29 +1,26 @@
 import React from 'react';
-import PostList from './components/post-list';
-import HotPost from './components/hot-post';
+import Footer from './components/footer';
 import NavBar from './components/nav-bar';
-
+import PostList from './components/post-list';
+import WritePost from './components/write-post';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.scss';
 
 function App() {
-  //目前这里没有业务逻辑
   return (
-    <>
-      <NavBar></NavBar>
-      <div className="container-fluid">
-        <div className='main-area'>
-          {/* row-column 这个行列布局工具样式，是 Bootstrap 里面使用频率最高的工具样式 */}
-          <div className="row">
-            <div className="col-md-9">
-              <PostList page={1}></PostList>
-            </div>
-            <div className="col-md-3">
-              <HotPost></HotPost>
-            </div>
-          </div>
+    <Router>
+      <div className="App" data-bs-theme="dark">
+        <NavBar></NavBar>
+        <div className="container main-container">
+          <Routes>
+            <Route path="/" element={<PostList></PostList>}></Route>
+            <Route path="/post-list" element={<PostList></PostList>}></Route>
+            <Route path="/write-post" element={<WritePost></WritePost>}></Route>
+          </Routes>
         </div>
+        <Footer></Footer>
       </div>
-    </>
+    </Router>
   );
 }
 
