@@ -1,11 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './index.scss';
-import postListMock from '../../components/mock-data/post-list-mock.json';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 export default (props) => {
-  const [postList, setPostList] = useState([...postListMock]);
+  const [postList, setPostList] = useState([]);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/posts')
+      .then((res) => {
+        setPostList(res?.data || []);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  //从 server端读取 postList
   return (
     <div className="post-list-container">
       {postList.map((post) => {
