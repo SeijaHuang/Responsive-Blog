@@ -1,0 +1,17 @@
+@import "~bootstrap/scss/bootstrap";
+
+.bd-footer a {
+  color: var(--bs-body-color);
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: var(--bs-link-hover-color);
+    text-decoration: underline;
+  }
+}
+
+.bd-code-snippet {
+  margin: 0 -1.5rem 1rem;
+  border: solid var(--bs-border-color);
+  border-width: 1px 0;
+}
