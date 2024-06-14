@@ -36,6 +36,15 @@ export default (props) => {
                 Write
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link active"
+                aria-current="manage"
+                to="/manage"
+              >
+                Management
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import './index.scss';
 import postListMock from '../../components/mock-data/post-list-mock.json';
+import { useNavigate } from 'react-router-dom';
 export default (props) => {
   const [postList, setPostList] = useState([...postListMock]);
+  const navigate = useNavigate();
 
   return (
     <div className="post-list-container">
@@ -28,8 +30,21 @@ export default (props) => {
             <div className="card-body">
               <h5 className="card-title">{post.postTitle}</h5>
               <p className="card-text">{post.postContent}</p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
+              <a
+                href="#"
+                className="btn btn-primary"
+                onClick={() => {
+                  //通过window.localStorage来传递复杂的对象
+                  //向localStorage里面写数据的时候，不要超过5MB，也不要太大
+                  //不要把机密的东西放到localStorage里
+                  window.localStorage.setItem(
+                    'postDetail',
+                    JSON.stringify(post)
+                  );
+                  navigate(`/post-detail/${post.id}`);
+                }}
+              >
+                Details
               </a>
             </div>
           </div>
